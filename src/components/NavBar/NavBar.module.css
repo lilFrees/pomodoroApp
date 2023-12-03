@@ -1,0 +1,66 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+  gap: 2rem;
+}
+
+.action {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.username {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.navToggleBtn {
+  font-size: 1.5rem;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  animation: colorful 50s infinite;
+}
+
+@keyframes colorful {
+  0% {
+    background-color: rgb(237, 100, 100);
+  }
+  10% {
+    background-color: rgb(237, 178, 100);
+  }
+  20% {
+    background-color: rgb(173, 237, 100);
+  }
+  30% {
+    background-color: rgb(116, 237, 100);
+  }
+  20% {
+    background-color: rgb(100, 237, 168);
+  }
+  20% {
+    background-color: rgb(100, 194, 237);
+  }
+  20% {
+    background-color: rgb(100, 132, 237);
+  }
+  20% {
+    background-color: rgb(121, 100, 237);
+  }
+  90% {
+    background-color: rgb(255, 0, 255);
+  }
+  100% {
+    background-color: rgb(255, 127, 144);
+  }
+}
