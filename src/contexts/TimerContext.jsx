@@ -22,6 +22,10 @@ const TimerProvider = ({ children }) => {
     setIsActive(false);
   }, [currentTimer.time]);
 
+  function clearCounts() {
+    localStorage.setItem(JSON.stringify(TIMERS));
+  }
+
   // Change Timers
   const switchTimerType = useCallback(
     (type) => {
@@ -100,6 +104,7 @@ const TimerProvider = ({ children }) => {
     isActive,
     startTimer,
     stopTimer,
+    clearCounts,
     switchTimerType,
   };
 

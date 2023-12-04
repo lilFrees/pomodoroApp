@@ -29,7 +29,7 @@
   top: 0;
   left: 0;
   height: 5px;
-  animation: colorful 50s infinite;
+  animation: colorful 60s infinite;
 }
 
 @keyframes colorful {

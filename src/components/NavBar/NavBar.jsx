@@ -32,9 +32,12 @@ function NavBar() {
   return (
     <div className={style.navbar}>
       <motion.div
-        initial={{ width: 0 }}
+        initial={{ width: "0%" }}
         animate={{ width: `${(timeRemaining / currentTimer.time) * 100}%` }}
-        transition={{ type: "spring", stiffness: 30 }}
+        transition={{
+          type: "spring",
+          stiffness: 30,
+        }}
         className={style.progress}
       />
       <h2 className={style.username}>{username}</h2>
