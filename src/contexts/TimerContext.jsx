@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useEffect, useCallback, useReducer } from "react";
 import alarm from "../assets/alarm.mp3";
 
 export const TimerContext = createContext();
@@ -10,17 +10,60 @@ const TIMERS = [
   { type: "LONG", time: 15 * 60, count: 0 },
 ];
 
-const TimerProvider = ({ children }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(20 * 60);
-  const [currentTimer, setCurrentTimer] = useState(TIMERS[0]);
+const initialState = {
+  timers: TIMERS,
+  customTimers: TIMERS,
+  currentTimer: TIMERS[0],
+  isActive: false,
+  timeRemaining: TIMERS[0].time,
+};
 
-  const startTimer = useCallback(() => setIsActive(true), []);
+function reducer(state, action) {
+  switch (action.type) {
+    case "RUNNING":
+      return { ...state, timeRemaining: state.timeRemaining - 1 };
+    case "START":
+      return { ...state, isActive: true };
+    case "STOP":
+      return { ...state, isActive: false };
+    case "SWITCH":
+      return {
+        ...state,
+        currentTimer: state.timers[action.payload],
+        timeRemaining: state.timers[action.payload].time,
+      };
+    case "CLEAR":
+      return {
+        ...state,
+        currentTimer: TIMERS[0],
+        timeRemaining: TIMERS[0].time,
+        isActive: false,
+      };
+    case "CUSTOMIZE":
+      return {
+        ...state,
+        timers: action.payload, // Update timers with the new customized timers
+        currentTimer: action.payload[0], // Set the current timer to the first custom timer
+        timeRemaining: action.payload[0].time, // Set time remaining to the duration of the first custom timer
+      };
+    case "RESET_TO_DEFAULT":
+      return {
+        ...state,
+        timers: TIMERS, // Set timers back to default values
+        currentTimer: TIMERS[0], // Set the current timer to the first default timer
+        timeRemaining: TIMERS[0].time, // Set time remaining to the duration of the first default timer
+      };
+  }
+}
+
+const TimerProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const startTimer = useCallback(() => dispatch({ type: "START" }), []);
 
   const stopTimer = useCallback(() => {
-    setTimeRemaining(currentTimer.time);
-    setIsActive(false);
-  }, [currentTimer.time]);
+    dispatch({ type: "RUNNUNG" });
+  }, []);
 
   function clearCounts() {
     localStorage.setItem(JSON.stringify(TIMERS));
@@ -29,13 +72,23 @@ const TimerProvider = ({ children }) => {
   // Change Timers
   const switchTimerType = useCallback(
     (type) => {
-      if (type !== currentTimer.type) {
-        setCurrentTimer(TIMERS[type]);
-        setTimeRemaining(TIMERS[type].time);
+      if (type !== state.currentTimer.type) {
+        dispatch({ type: "SWITCH", payload: type });
       }
     },
-    [currentTimer.type]
+    [state.currentTimer]
   );
+
+  const customizeTimers = useCallback((customTimers) => {
+    dispatch({ type: "CUSTOMIZE", payload: customTimers });
+    localStorage.setItem("timers", JSON.stringify(customTimers));
+  }, []);
+
+  // Reset Timers to Default
+  const resetToDefault = useCallback(() => {
+    dispatch({ type: "RESET_TO_DEFAULT" });
+    localStorage.setItem("timers", JSON.stringify(TIMERS)); // Update localStorage with default timers
+  }, []);
 
   // Place timers to localStorage
   useEffect(() => {
@@ -52,25 +105,25 @@ const TimerProvider = ({ children }) => {
   useEffect(() => {
     let interval = null;
 
-    if (isActive && timeRemaining > 0) {
+    if (state.isActive && state.timeRemaining > 0) {
       interval = setInterval(() => {
-        setTimeRemaining((time) => time - 1);
+        dispatch({ type: "RUNNING" });
       }, 1000);
-    } else if (!isActive || timeRemaining === 0) {
+    } else if (!state.isActive || state.timeRemaining === 0) {
       clearInterval(interval);
     }
 
-    if (timeRemaining === 0) {
+    if (state.timeRemaining === 0) {
       let timersData = JSON.parse(localStorage.getItem("timers"));
       const currentIndex = timersData.findIndex(
-        (timer) => timer.type === currentTimer.type
+        (timer) => timer.type === state.currentTimer.type
       );
 
       timersData[currentIndex].count += 1;
 
       localStorage.setItem("timers", JSON.stringify(timersData));
 
-      setIsActive(false);
+      dispatch({ type: "STOP" });
 
       // Alarm
 
@@ -83,29 +136,25 @@ const TimerProvider = ({ children }) => {
       );
 
       if (timerCount % 8 === 0) {
-        switchTimerType(2);
+        dispatch({ type: "SWITCH", payload: 2 });
       } else if (timerCount % 2 === 0) {
-        switchTimerType(1);
+        dispatch({ type: "SWITCH", payload: 1 });
       } else {
-        switchTimerType(0);
+        dispatch({ type: "SWITCH", payload: 0 });
       }
     }
 
     return () => clearInterval(interval);
-  }, [currentTimer.type, isActive, switchTimerType, timeRemaining]);
-
-  useEffect(() => {
-    setTimeRemaining(currentTimer.time);
-  }, [currentTimer]);
+  }, [state]);
 
   const value = {
-    currentTimer,
-    timeRemaining,
-    isActive,
+    ...state,
     startTimer,
     stopTimer,
     clearCounts,
     switchTimerType,
+    customizeTimers,
+    resetToDefault,
   };
 
   return (

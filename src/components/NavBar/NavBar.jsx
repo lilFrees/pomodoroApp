@@ -1,44 +1,36 @@
 import style from "./NavBar.module.css";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import Button from "../Button/Button";
-import { useContext, useState, useEffect, useRef } from "react";
+import PopUp from "../PopUp/PopUp";
+import { useContext, useState, useEffect } from "react";
 import { TimerContext } from "../../contexts/TimerContext";
 import { UserContext } from "../../contexts/UserContext";
 import { motion } from "framer-motion";
+import { createPortal } from "react-dom";
 
 function NavBar() {
   const { switchTimerType, currentTimer, isActive, timeRemaining } =
     useContext(TimerContext);
   const { username } = useContext(UserContext);
-  const navRef = useRef();
 
   const [timerCount, setTimerCount] = useState([0, 0, 0]);
   const [isOpen, setIsOpen] = useState(false);
 
+  //
+
+  useEffect(() => {
+    console.info(
+      " ADD FUNCTIONALITY TO CHANGING TIMERS PROPERTIES AND SETTING THEM BACK TO DEFAULT"
+    );
+  }, []);
+
   function openHandler() {
     setIsOpen(true);
   }
+
   function closeHandler() {
     setIsOpen(false);
   }
-
-  useEffect(() => {
-    const navClick = function (e) {
-      if (e.target === navRef.current && !isOpen) {
-        openHandler();
-        console.log("inside");
-      } else {
-        closeHandler();
-        console.log("outside");
-      }
-    };
-
-    window.addEventListener("click", navClick);
-
-    return () => {
-      window.removeEventListener("click", navClick);
-    };
-  }, []);
 
   useEffect(() => {
     const timers = JSON.parse(localStorage.getItem("timers"));
@@ -97,37 +89,27 @@ function NavBar() {
           {timerCount[2]} long breaks
         </Button>
       </div>
-      <div ref={navRef}>
+      <div>
         <Button
           type="button"
           alpha="1"
           className={style.navToggleBtn}
-          // onClick={openHandler}
+          onClick={openHandler}
+          id="toggle"
         >
           <CgMenuLeftAlt />
         </Button>
       </div>
-      {isOpen && (
-        <motion.div
-          layout
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={spring}
-          className={style.navMenu}
-        >
-          <div className={style.actions}></div>
-          <ul className={style.list}></ul>
-        </motion.div>
+      {createPortal(
+        <PopUp isopen={isOpen} onClose={closeHandler}>
+          <div>
+            
+          </div>
+        </PopUp>,
+        document.getElementById("modal")
       )}
     </div>
   );
 }
-
-const spring = {
-  type: "spring",
-  stiffness: 700,
-  damping: 50,
-};
 
 export default NavBar;

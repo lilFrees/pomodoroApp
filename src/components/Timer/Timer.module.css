@@ -15,17 +15,16 @@
 .mantra {
   font-size: 1.5rem;
   font-weight: 700;
+  height: 8rem;
   animation: fadeIn 0.5s forwards;
   transition: 0.2s all;
 }
 
 @keyframes fadeIn {
   from {
-    height: 0px;
     opacity: 0;
   }
   to {
-    height: 8rem;
     opacity: 1;
   }
 }

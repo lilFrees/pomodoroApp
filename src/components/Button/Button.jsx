@@ -10,6 +10,7 @@ function Button(props) {
       onClick={props.onClick}
       disabled={props.disabled}
       title={props.title}
+      ref={props?.navRef}
     >
       {props.children}
     </button>

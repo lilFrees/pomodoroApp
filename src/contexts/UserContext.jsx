@@ -5,7 +5,7 @@ import { createContext } from "react";
 const UserContext = createContext();
 
 const UserProvider = function (props) {
-  const [username, setUsername] = useState("Nickname");
+  const [username, setUsername] = useState(localStorage.getItem("user") || "");
 
   return (
     <UserContext.Provider value={{ username, setUsername }}>
