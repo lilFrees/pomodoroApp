@@ -47,6 +47,49 @@
   animation: colorful 100s infinite linear;
 }
 
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  font-size: 1.2rem;
+  padding: 2rem;
+  border: none;
+  background-color: #fafafa;
+  transition: 0.2s all;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.navBtn:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+.backBtn {
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 2rem;
+  padding: 1rem;
+  transition: 0.2s all;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+.navSlider {
+  color: lime !important;
+}
+
 @keyframes colorful {
   0% {
     background-color: rgb(237, 100, 100);
@@ -78,4 +121,30 @@
   100% {
     background-color: rgb(255, 127, 144);
   }
+}
+
+.bgImg {
+  border: none;
+  width: 9rem;
+  height: 7rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
 }

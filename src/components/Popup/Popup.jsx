@@ -9,7 +9,7 @@ const Close = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  margin: 4.5rem;
+  margin: 2rem;
   padding: 1rem;
   cursor: pointer;
   display: flex;
@@ -24,10 +24,10 @@ const Close = styled.button`
 
 const Backdrop = styled.div`
   opacity: ${(props) => {
-    return props.isopen ? "1" : "0";
+    return props.isopen === "true" ? "1" : "0";
   }};
   pointer-events: ${(props) => {
-    return props.isopen ? "all" : "none";
+    return props.isopen === "true" ? "all" : "none";
   }};
   width: 100%;
   height: 100%;
@@ -45,10 +45,10 @@ const Modal = styled.div`
   right: 0;
   background-color: white;
   border-radius: 0 0 0 2rem;
-  padding: 5.5rem;
+  padding: 3rem;
   transition: 0.5s all cubic-bezier(0.77, -0.01, 0.32, 0.99);
 
-  transform: translateX(${(props) => (props.isopen ? "0" : "100%")});
+  transform: translateX(${(props) => (props.isopen === "true" ? "0" : "100%")});
 `;
 
 const Content = styled.div`
@@ -57,19 +57,19 @@ const Content = styled.div`
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 function PopUp(props) {
   return (
     <>
-      <Modal isopen={props.isopen}>
+      <Modal isopen={props.isopen.toString()}>
         <Close onClick={props.onClose}>
           <IoClose />
         </Close>
         <Content>{props.children}</Content>
       </Modal>
-      <Backdrop isopen={props.isopen} onClick={props.onClose} />
+      <Backdrop isopen={props.isopen.toString()} onClick={props.onClose} />
     </>
   );
 }

@@ -25,7 +25,11 @@ function reducer(state, action) {
     case "START":
       return { ...state, isActive: true };
     case "STOP":
-      return { ...state, isActive: false };
+      return {
+        ...state,
+        isActive: false,
+        timeRemaining: state.currentTimer.time,
+      };
     case "SWITCH":
       return {
         ...state,
@@ -53,6 +57,8 @@ function reducer(state, action) {
         currentTimer: TIMERS[0], // Set the current timer to the first default timer
         timeRemaining: TIMERS[0].time, // Set time remaining to the duration of the first default timer
       };
+    default:
+      throw new Error("Case not found");
   }
 }
 
@@ -62,7 +68,7 @@ const TimerProvider = ({ children }) => {
   const startTimer = useCallback(() => dispatch({ type: "START" }), []);
 
   const stopTimer = useCallback(() => {
-    dispatch({ type: "RUNNUNG" });
+    dispatch({ type: "STOP" });
   }, []);
 
   function clearCounts() {
@@ -72,16 +78,22 @@ const TimerProvider = ({ children }) => {
   // Change Timers
   const switchTimerType = useCallback(
     (type) => {
-      if (type !== state.currentTimer.type) {
+      if (state.timers[type] !== state?.currentTimer.type) {
         dispatch({ type: "SWITCH", payload: type });
       }
     },
-    [state.currentTimer]
+    [state.currentTimer, state.timers]
   );
 
   const customizeTimers = useCallback((customTimers) => {
     dispatch({ type: "CUSTOMIZE", payload: customTimers });
-    localStorage.setItem("timers", JSON.stringify(customTimers));
+
+    const timersWithTime = customTimers.map((timer) => ({
+      ...timer,
+      time: timer.time,
+    }));
+
+    localStorage.setItem("timers", JSON.stringify(timersWithTime));
   }, []);
 
   // Reset Timers to Default

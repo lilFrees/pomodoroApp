@@ -8,10 +8,12 @@ import { TimerContext } from "../contexts/TimerContext";
 import { useContext, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { IoArrowForwardCircle } from "react-icons/io5";
+import { BackgroundContext } from "../contexts/BackgroundContext";
 
 function Pomodoro() {
   const { currentTimer } = useContext(TimerContext);
   const { username, setUsername } = useContext(UserContext);
+  const { currentImage } = useContext(BackgroundContext);
   const userRef = useRef(null);
   const isStudy = currentTimer.type === "FOCUS";
 
@@ -41,7 +43,15 @@ function Pomodoro() {
   }
 
   return (
-    <div className={`${style.main} ${isStudy ? style.study : style.break}`}>
+    <div
+      className={`${style.main} ${isStudy ? style.study : style.break}`}
+      style={{
+        backgroundImage:
+          isStudy &&
+          `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url("${currentImage.src}")`,
+      }}
+    >
       <NavBar />
 
       <Timer />
