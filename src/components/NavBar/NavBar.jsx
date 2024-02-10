@@ -3,11 +3,11 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import Button from "../Button/Button";
 import { PopUp } from "../PopUp/PopUp";
 import { useContext, useEffect, useReducer } from "react";
-import { TimerContext } from "../../contexts/TimerContext";
+import { useTimer } from "../../hooks/useTimer";
 import { UserContext } from "../../contexts/UserContext";
 import { BackgroundContext } from "../../contexts/BackgroundContext";
 import { HiArrowSmLeft } from "react-icons/hi";
-import { Slider } from "@mui/material";
+import { Slider, Switch } from "@mui/material";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { VscDebugRestart } from "react-icons/vsc";
@@ -21,11 +21,13 @@ function NavBar() {
     switchTimerType,
     currentTimer,
     isActive,
+    autoRunning,
     timeRemaining,
     customizeTimers,
     resetToDefault,
     timers,
-  } = useContext(TimerContext);
+    toggleAutoRun,
+  } = useTimer();
 
   const { currentImage, allImages, setImage } = useContext(BackgroundContext);
 
@@ -202,6 +204,7 @@ function NavBar() {
                 <FaImage />
                 Change Background Image
               </button>
+
               <Link to="/tasks" className={style.navBtn}>
                 <FaListUl />
                 Tasks
@@ -260,6 +263,16 @@ function NavBar() {
               />
               {`${state.longBreakTime / 60} min`}
               {/* Slider to control long break time */}
+
+              <Switch
+                className={style.navSlider}
+                value={autoRunning}
+                onChange={(e) => {
+                  toggleAutoRun(!autoRunning);
+                }}
+                style={{ color: "lime" }}
+              />
+              {`Auto start Timers`}
             </>
           )}
           {state.page === "images" && (

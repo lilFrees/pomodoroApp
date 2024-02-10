@@ -17,6 +17,7 @@ const initialState = {
   currentTimer: TIMERS[0],
   isActive: false,
   timeRemaining: TIMERS[0].time,
+  autoRunning: false,
 };
 
 function reducer(state, action) {
@@ -47,9 +48,7 @@ function reducer(state, action) {
     case "CUSTOMIZE":
       return {
         ...state,
-        timers: action.payload, // Update timers with the new customized timers
-        currentTimer: action.payload[0], // Set the current timer to the first custom timer
-        timeRemaining: action.payload[0].time, // Set time remaining to the duration of the first custom timer
+        timers: action?.payload, // Update timers with the new customized timers
       };
     case "RESET_TO_DEFAULT":
       return {
@@ -57,6 +56,11 @@ function reducer(state, action) {
         timers: TIMERS, // Set timers back to default values
         currentTimer: TIMERS[0], // Set the current timer to the first default timer
         timeRemaining: TIMERS[0].time, // Set time remaining to the duration of the first default timer
+      };
+    case "AUTO":
+      return {
+        ...state,
+        autoRunning: action.payload,
       };
     default:
       throw new Error("Case not found");
@@ -103,6 +107,12 @@ const TimerProvider = ({ children }) => {
     localStorage.setItem("timers", JSON.stringify(TIMERS)); // Update localStorage with default timers
   }, []);
 
+  // Toggle Auto Running
+
+  const toggleAutoRun = function (toggle) {
+    dispatch({ type: "AUTO", payload: toggle });
+  };
+
   // Place timers to localStorage
   useEffect(() => {
     const timersData = localStorage.getItem("timers")
@@ -134,9 +144,18 @@ const TimerProvider = ({ children }) => {
 
       timersData[currentIndex].count += 1;
 
+      console.log(timersData);
+
+      dispatch({
+        type: "CUSTOMIZE",
+        payload: timersData,
+      });
+
       localStorage.setItem("timers", JSON.stringify(timersData));
 
-      dispatch({ type: "STOP" });
+      if (!state.autoRunning) {
+        dispatch({ type: "STOP" });
+      }
 
       // Alarm
 
@@ -168,12 +187,11 @@ const TimerProvider = ({ children }) => {
     switchTimerType,
     customizeTimers,
     resetToDefault,
+    toggleAutoRun,
   };
 
   return (
-    <TimerContext.Provider value={value}>
-      
-      {children}</TimerContext.Provider>
+    <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
   );
 };
 
