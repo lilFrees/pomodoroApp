@@ -60,7 +60,7 @@ const Content = styled.div`
   gap: 1rem;
 `;
 
-function PopUp(props) {
+export function PopUp(props) {
   return (
     <>
       <Modal isopen={props.isopen.toString()}>
@@ -74,4 +74,3 @@ function PopUp(props) {
   );
 }
 
-export default PopUp;

@@ -1,7 +1,7 @@
 import style from "./NavBar.module.css";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import Button from "../Button/Button";
-import PopUp from "../PopUp/PopUp";
+import { PopUp } from "../PopUp/PopUp";
 import { useContext, useEffect, useReducer } from "react";
 import { TimerContext } from "../../contexts/TimerContext";
 import { UserContext } from "../../contexts/UserContext";
