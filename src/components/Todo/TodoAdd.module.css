@@ -1,0 +1,21 @@
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  margin-inline: auto;
+  cursor: pointer;
+  transition: 0.2s all;
+  outline: 1px solid transparent;
+}
+
+.add:hover {
+  /* box-shadow: 0 5px 40px rgba(0, 0, 0, 0.2); */
+  outline: 0.7rem solid rgba(255, 68, 0, 0.8);
+  color: orangered;
+}

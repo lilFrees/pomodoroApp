@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useCallback, useReducer } from "react";
+
 import alarm from "../assets/alarm.mp3";
 
 export const TimerContext = createContext();
@@ -170,7 +171,9 @@ const TimerProvider = ({ children }) => {
   };
 
   return (
-    <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
+    <TimerContext.Provider value={value}>
+      
+      {children}</TimerContext.Provider>
   );
 };
 

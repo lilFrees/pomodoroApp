@@ -4,14 +4,14 @@ import style from "./Pomodoro.module.css";
 import Timer from "../components/Timer/Timer";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
-import { TimerContext } from "../contexts/TimerContext";
 import { useContext, useRef } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { IoArrowForwardCircle } from "react-icons/io5";
 import { BackgroundContext } from "../contexts/BackgroundContext";
+import { useTimer } from "../hooks/useTimer";
 
 function Pomodoro() {
-  const { currentTimer } = useContext(TimerContext);
+  const { currentTimer } = useTimer();
   const { username, setUsername } = useContext(UserContext);
   const { currentImage } = useContext(BackgroundContext);
   const userRef = useRef(null);

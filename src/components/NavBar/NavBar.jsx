@@ -13,6 +13,8 @@ import { createPortal } from "react-dom";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoIosSettings } from "react-icons/io";
 import { FaImage } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaListUl } from "react-icons/fa6";
 
 function NavBar() {
   const {
@@ -200,10 +202,10 @@ function NavBar() {
                 <FaImage />
                 Change Background Image
               </button>
-              <button className={style.navBtn}>
-                <VscDebugRestart />
-                Reset to Default
-              </button>
+              <Link to="/tasks" className={style.navBtn}>
+                <FaListUl />
+                Tasks
+              </Link>
             </>
           )}
           {state.page && (

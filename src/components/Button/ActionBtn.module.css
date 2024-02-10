@@ -6,11 +6,10 @@
   );
   border: none;
   cursor: pointer;
-  width: 12rem;
+  width: 5rem;
   aspect-ratio: 1/1;
   color: white;
   border-radius: 50%;
-  aspect-ratio: 1/1;
   font-size: 1.7rem;
   transition: 0.2s all;
   border: 2px solid rgba(255, 255, 255, 0.6);
@@ -25,4 +24,12 @@
 
 .btn:active {
   transform: scale(0.95);
+}
+
+.big {
+  width: 12rem;
+}
+
+.mid {
+  width: 8rem;
 }
