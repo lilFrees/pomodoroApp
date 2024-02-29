@@ -16,6 +16,7 @@ import { FaImage } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaListUl } from "react-icons/fa6";
 import { IoIosBookmarks } from "react-icons/io";
+import { PiCoffeeFill } from "react-icons/pi";
 
 function NavBar() {
   const {
@@ -207,42 +208,44 @@ function NavBar() {
               </button>
 
               <Button
-          type="button"
-          alpha="1"
-          className={style.navBtn}
-          onClick={() => {
-            switchTimerType(0);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          <IoIosBookmarks />
-          Study Session {state.timerCount[0]}
-        </Button>
-        <Button
-          type="button"
-          alpha="1"
-          className={style.navBtn}
-          onClick={() => {
-            switchTimerType(1);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          Short Break [{state.timerCount[1]}]
-        </Button>
-        <Button
-          type="button"
-          alpha="1"
-          className={style.navBtn}
-          onClick={() => {
-            switchTimerType(2);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          Long Break [{state.timerCount[2]}]
-        </Button>
+                type="button"
+                alpha="1"
+                className={style.navBtn}
+                onClick={() => {
+                  switchTimerType(0);
+                }}
+                disabled={isActive}
+                title={isActive ? "Stop the timer to switch it" : ""}
+              >
+                <IoIosBookmarks />
+                Study Session [{state.timerCount[0]}]
+              </Button>
+              <Button
+                type="button"
+                alpha="1"
+                className={style.navBtn}
+                onClick={() => {
+                  switchTimerType(1);
+                }}
+                disabled={isActive}
+                title={isActive ? "Stop the timer to switch it" : ""}
+              >
+                <PiCoffeeFill />
+                Short Break [{state.timerCount[1]}]
+              </Button>
+              <Button
+                type="button"
+                alpha="1"
+                className={style.navBtn}
+                onClick={() => {
+                  switchTimerType(2);
+                }}
+                disabled={isActive}
+                title={isActive ? "Stop the timer to switch it" : ""}
+              >
+                <PiCoffeeFill />
+                Long Break [{state.timerCount[2]}]
+              </Button>
 
               <Link to="/tasks" className={style.navBtn}>
                 <FaListUl />
