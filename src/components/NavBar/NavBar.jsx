@@ -1,7 +1,7 @@
 import style from "./NavBar.module.css";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import Button from "../Button/Button";
-import { PopUp } from "../PopUp/PopUp";
+import PopUp from "../PopUp/PopUp";
 import { useContext, useEffect, useReducer } from "react";
 import { useTimer } from "../../hooks/useTimer";
 import { UserContext } from "../../contexts/UserContext";
@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { FaListUl } from "react-icons/fa6";
 import { IoIosBookmarks } from "react-icons/io";
 import { PiCoffeeFill } from "react-icons/pi";
+import useWindowSize from "../../hooks/useWindowSize";
 
 function NavBar() {
   const {
@@ -32,6 +33,8 @@ function NavBar() {
   } = useTimer();
 
   const { currentImage, allImages, setImage } = useContext(BackgroundContext);
+
+  const size = useWindowSize();
 
   const initialState = {
     timerCount: [0, 0, 0],
@@ -141,44 +144,48 @@ function NavBar() {
         className={style.progress}
       />
       <h2 className={style.username}>{username}</h2>
-      <div className={style.actions}>
-        <Button
-          type="button"
-          alpha="1"
-          className={style.action}
-          onClick={() => {
-            switchTimerType(0);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          {state.timerCount[0]} pomodoros
-        </Button>
-        <Button
-          type="button"
-          alpha="1"
-          className={style.action}
-          onClick={() => {
-            switchTimerType(1);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          {state.timerCount[1]} breaks
-        </Button>
-        <Button
-          type="button"
-          alpha="1"
-          className={style.action}
-          onClick={() => {
-            switchTimerType(2);
-          }}
-          disabled={isActive}
-          title={isActive ? "Stop the timer to switch it" : ""}
-        >
-          {state.timerCount[2]} long breaks
-        </Button>
-      </div>
+      {size.width >= 800 && (
+        <>
+          <div className={style.actions}>
+            <Button
+              type="button"
+              alpha="1"
+              className={style.action}
+              onClick={() => {
+                switchTimerType(0);
+              }}
+              disabled={isActive}
+              title={isActive ? "Stop the timer to switch it" : ""}
+            >
+              {state.timerCount[0]} pomodoros
+            </Button>
+            <Button
+              type="button"
+              alpha="1"
+              className={style.action}
+              onClick={() => {
+                switchTimerType(1);
+              }}
+              disabled={isActive}
+              title={isActive ? "Stop the timer to switch it" : ""}
+            >
+              {state.timerCount[1]} breaks
+            </Button>
+            <Button
+              type="button"
+              alpha="1"
+              className={style.action}
+              onClick={() => {
+                switchTimerType(2);
+              }}
+              disabled={isActive}
+              title={isActive ? "Stop the timer to switch it" : ""}
+            >
+              {state.timerCount[2]} long breaks
+            </Button>
+          </div>
+        </>
+      )}
       <div>
         <Button
           type="button"
@@ -207,45 +214,49 @@ function NavBar() {
                 Change Background Image
               </button>
 
-              <Button
-                type="button"
-                alpha="1"
-                className={style.navBtn}
-                onClick={() => {
-                  switchTimerType(0);
-                }}
-                disabled={isActive}
-                title={isActive ? "Stop the timer to switch it" : ""}
-              >
-                <IoIosBookmarks />
-                Study Session [{state.timerCount[0]}]
-              </Button>
-              <Button
-                type="button"
-                alpha="1"
-                className={style.navBtn}
-                onClick={() => {
-                  switchTimerType(1);
-                }}
-                disabled={isActive}
-                title={isActive ? "Stop the timer to switch it" : ""}
-              >
-                <PiCoffeeFill />
-                Short Break [{state.timerCount[1]}]
-              </Button>
-              <Button
-                type="button"
-                alpha="1"
-                className={style.navBtn}
-                onClick={() => {
-                  switchTimerType(2);
-                }}
-                disabled={isActive}
-                title={isActive ? "Stop the timer to switch it" : ""}
-              >
-                <PiCoffeeFill />
-                Long Break [{state.timerCount[2]}]
-              </Button>
+              {size.width < 800 && (
+                <>
+                  <Button
+                    type="button"
+                    alpha="1"
+                    className={style.navBtn}
+                    onClick={() => {
+                      switchTimerType(0);
+                    }}
+                    disabled={isActive}
+                    title={isActive ? "Stop the timer to switch it" : ""}
+                  >
+                    <IoIosBookmarks />
+                    Study Session [{state.timerCount[0]}]
+                  </Button>
+                  <Button
+                    type="button"
+                    alpha="1"
+                    className={style.navBtn}
+                    onClick={() => {
+                      switchTimerType(1);
+                    }}
+                    disabled={isActive}
+                    title={isActive ? "Stop the timer to switch it" : ""}
+                  >
+                    <PiCoffeeFill />
+                    Short Break [{state.timerCount[1]}]
+                  </Button>
+                  <Button
+                    type="button"
+                    alpha="1"
+                    className={style.navBtn}
+                    onClick={() => {
+                      switchTimerType(2);
+                    }}
+                    disabled={isActive}
+                    title={isActive ? "Stop the timer to switch it" : ""}
+                  >
+                    <PiCoffeeFill />
+                    Long Break [{state.timerCount[2]}]
+                  </Button>
+                </>
+              )}
 
               <Link to="/tasks" className={style.navBtn}>
                 <FaListUl />
