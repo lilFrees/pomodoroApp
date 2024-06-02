@@ -1,63 +1,63 @@
 :root {
-  --rem: 10;
-  --accent: #df0801;
-  --text: #020a07;
-  --back: #f8ffff;
+	--rem: 10;
+	--accent: #df0801;
+	--text: #020a07;
+	--back: #f8ffff;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  width: 100%;
-  min-height: 100vh;
-  font-family: "Quicksand", sans-serif;
-  overflow: hidden;
+	width: 100%;
+	min-height: 100vh;
+	font-family: 'Quicksand', sans-serif;
+	overflow: hidden;
 }
 
 @media only screen and (max-width: 1200px) {
-  html {
-    font-size: 95%;
-  }
+	html {
+		font-size: 95%;
+	}
 }
 
 @media only screen and (max-width: 992px) {
-  html {
-    font-size: 90%;
-  }
+	html {
+		font-size: 90%;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  html {
-    font-size: 85%;
-  }
+	html {
+		font-size: 85%;
+	}
 }
 
 @media only screen and (max-width: 576px) {
-  html {
-    font-size: 80%;
-  }
+	html {
+		font-size: 80%;
+	}
 }
 
 #modal {
-  width: 0;
-  height: 0;
+	width: 0;
+	height: 0;
 }
 
 .fade {
-  animation: fade 0.5s ease-in forwards;
+	animation: fade 0.5s ease-in forwards;
 }
 
 @keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateX(-5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(-5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

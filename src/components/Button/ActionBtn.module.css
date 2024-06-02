@@ -1,35 +1,38 @@
 .btn {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.3)
-  );
-  border: none;
-  cursor: pointer;
-  width: 5rem;
-  aspect-ratio: 1/1;
-  color: white;
-  border-radius: 50%;
-  font-size: 1.7rem;
-  transition: 0.2s all;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(4px);
-  text-transform: uppercase;
-  font-weight: 900;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.05),
+		rgba(255, 255, 255, 0.3)
+	);
+	cursor: pointer;
+	width: 5rem;
+	aspect-ratio: 1/1;
+	color: white;
+	border-radius: 50%;
+	font-size: 1.7rem;
+	transition: 0.2s all;
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	backdrop-filter: blur(4px);
+	text-transform: uppercase;
+	font-weight: 900;
 }
 
 .btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn:active {
-  transform: scale(0.95);
+	transform: scale(0.95);
 }
 
 .big {
-  width: 12rem;
+	width: 12rem;
 }
 
 .mid {
-  width: 8rem;
+	width: 8rem;
+}
+
+.small {
+	width: 5rem;
 }

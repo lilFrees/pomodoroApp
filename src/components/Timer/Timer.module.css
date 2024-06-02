@@ -1,48 +1,48 @@
 .timer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 30rem;
-  margin-inline: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 30rem;
+	margin-inline: auto;
 }
 
 .clock {
-  font-size: 10rem;
-  font-weight: 900;
+	font-size: 8rem;
+	font-weight: 900;
 }
 
 .mantra {
-  font-size: 1.5rem;
-  font-weight: 700;
-  height: 8rem;
-  animation: fadeIn 0.5s forwards;
-  transition: 0.2s all;
+	font-size: 1.5rem;
+	font-weight: 700;
+	height: 8rem;
+	animation: fadeIn 0.5s forwards;
+	transition: 0.2s all;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @media only screen and (max-width: 768px) {
-  .clock {
-    font-size: 9rem;
-  }
-  .mantra {
-    font-size: 1.3rem;
-  }
+	.clock {
+		font-size: 20vw;
+	}
+	.mantra {
+		font-size: 1.4rem;
+	}
 }
 
 @media only screen and (max-width: 576px) {
-  .clock {
-    font-size: 8rem;
-  }
-  .mantra {
-    font-size: 1rem;
-  }
+	.clock {
+		font-size: 22vw;
+	}
+	.mantra {
+		font-size: 1.2rem;
+	}
 }

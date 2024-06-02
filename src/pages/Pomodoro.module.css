@@ -1,62 +1,68 @@
 .main {
-  width: 100%;
-  height: 100vh;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+	width: 100%;
+	height: 100vh;
+	padding: 4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
 }
 
 .study {
-  background-size: cover;
-  background-position: center;
+	background-size: cover;
+	background-position: center;
 }
 
 .break {
-  background: linear-gradient(to top, #82bb9d, #4bc461);
+	background: linear-gradient(to top, #82bb9d, #4bc461);
 }
 
 .form {
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 3rem;
+	overflow: hidden;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 3rem;
 }
 
 .form > * {
-  opacity: 0;
+	opacity: 0;
 }
 
 .form h3 {
-  animation-delay: 0.1s !important;
-  font-size: 2.5rem;
+	animation-delay: 0.1s !important;
+	font-size: 2.5rem;
 }
 
 .userInput {
-  font-size: 1.8rem;
-  text-align: center;
-  border: 0;
-  outline: none;
-  border-bottom: 1px solid #000;
-  font-weight: 900;
-  animation-delay: 0.2s !important;
+	font-size: 1.8rem;
+	text-align: center;
+	border: 0;
+	outline: none;
+	border-bottom: 1px solid #000;
+	font-weight: 900;
+	animation-delay: 0.2s !important;
 }
 
 .submit {
-  border: none;
-  background: transparent;
-  font-size: 5rem;
-  cursor: pointer;
-  transition: 0.1s all;
-  color: #444;
-  animation-delay: 0.3s !important;
+	border: none;
+	background: transparent;
+	font-size: 5rem;
+	cursor: pointer;
+	transition: 0.1s all;
+	color: #444;
+	animation-delay: 0.3s !important;
 }
 
 .submit:hover {
-  color: #111;
+	color: #111;
+}
+
+@media only screen and (max-width: 768px) {
+	.main {
+		padding: 1rem;
+	}
 }

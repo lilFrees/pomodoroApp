@@ -1,6 +1,25 @@
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.start {
+	width: 8rem;
+}
+
+.fullScreen {
+	position: absolute;
+	bottom: 2rem;
+	right: 2rem;
+	border: none;
+	background-color: transparent;
+	color: white;
+	font-size: 2rem;
+	width: 5rem;
+	height: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
