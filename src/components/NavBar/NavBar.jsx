@@ -14,7 +14,6 @@ import { createPortal } from 'react-dom';
 import { VscDebugRestart } from 'react-icons/vsc';
 import { IoIosSettings } from 'react-icons/io';
 import { FaImage } from 'react-icons/fa';
-import { FaListUl } from 'react-icons/fa6';
 import { IoIosBookmarks } from 'react-icons/io';
 import { PiCoffeeFill } from 'react-icons/pi';
 import useWindowSize from '../../hooks/useWindowSize';
@@ -255,11 +254,6 @@ function NavBar() {
 									</Button>
 								</>
 							)}
-
-							<button to='/tasks' className={style.navBtn}>
-								<FaListUl />
-								Tasks
-							</button>
 						</>
 					)}
 					{state.page && (
@@ -304,6 +298,8 @@ function NavBar() {
 							<Slider
 								className={style.navSlider}
 								value={state.longBreakTime / 60}
+								min={1}
+								step={1}
 								onChange={(e, newValue) => {
 									console.log(e.target.value);
 									!isActive &&
@@ -338,7 +334,7 @@ function NavBar() {
 									}}
 								>
 									<img
-										src={image.src}
+										src={image.small}
 										alt={`Image ${i}`}
 										className={`${style.img} ${
 											image.id === currentImage.id ? style.currentImg : ''

@@ -10,7 +10,9 @@ function PopUp(props) {
 				top: '0',
 				right: '0',
 				borderRadius: '0 0 0 2rem',
-				transform: `translateX(${props.isOpen ? '0' : '100%'})`,
+				transform: `scale(${props.isOpen ? '1' : '0.9'})`,
+				visibility: `${props.isOpen ? 'visible' : 'hidden'}`,
+				opacity: `${props.isOpen ? '1' : '0'}`,
 				zIndex: 99999,
 				width: '30rem',
 			};
@@ -20,12 +22,11 @@ function PopUp(props) {
 				bottom: '0',
 				left: '50%',
 				borderRadius: '2rem 2rem 0 0',
-				transform: `translateY(${
-					props.isOpen ? '0' : '100%'
-				}) translateX(-50%)`,
+				transform: `translateX(-50%) scale(${props.isOpen ? '1' : '0.7'})`,
+				visibility: `${props.isOpen ? 'visible' : 'hidden'}`,
+				opacity: `${props.isOpen ? '1' : '0'}`,
 				zIndex: 9999,
 				width: '60rem',
-				overflowY: 'hidden',
 			};
 			break;
 	}

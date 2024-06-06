@@ -18,6 +18,7 @@ module.exports = {
 		],
 		'no-unused-vars': 'warn',
 		'react/prop-types': 'off',
-		'no-inner-declarations': 'off',
+		'no-inner-declarations': 'warn',
+		'no-unknown-propertyss': 'off',
 	},
 };
