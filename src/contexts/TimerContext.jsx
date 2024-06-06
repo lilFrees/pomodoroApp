@@ -92,7 +92,6 @@ const TimerProvider = ({ children }) => {
 
 	const customizeTimers = function (customTimers) {
 		dispatch({ type: 'CUSTOMIZE', payload: customTimers });
-		console.log(state.timers);
 
 		const timersWithTime = customTimers.map((timer) => ({
 			...timer,
@@ -100,6 +99,7 @@ const TimerProvider = ({ children }) => {
 		}));
 
 		localStorage.setItem('timers', JSON.stringify(timersWithTime));
+		console.log(state.timers);
 	};
 
 	// Reset Timers to Default
