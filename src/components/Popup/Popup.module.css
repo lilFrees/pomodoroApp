@@ -10,7 +10,7 @@
 	position: absolute;
 	max-width: 100vw;
 	max-height: 100%;
-	background-color: rgb(212, 212, 212);
+	background-color: rgb(247, 247, 247);
 	padding: 3rem;
 	transition: 0.2s all cubic-bezier(0.77, -0.01, 0.32, 0.99);
 	overflow-y: scroll;

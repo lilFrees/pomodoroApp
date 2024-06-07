@@ -13,12 +13,13 @@ import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import img1 from '../../assets/thumbnails/playlist0.jpeg';
 import img2 from '../../assets/thumbnails/playlist1.jpeg';
 import img3 from '../../assets/thumbnails/playlist2.jpeg';
+import ToDo from '../Todo/Todo';
 
 const playlists = [
 	{
 		id: 0,
 		image: img1,
-		link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator',
+		link: 'https://open.spotify.com/embed/playlist/37i9dQZF1DWYoYGBbGKurt?si=29abbb613e4048fb?utm_source=generator',
 	},
 	{
 		id: 1,
@@ -140,7 +141,9 @@ function Footer() {
 						setIsTaskOpen(false);
 					}}
 				>
-					<div>Todo</div>
+					<div>
+						<ToDo />
+					</div>
 				</PopUp>,
 				document.getElementById('modal')
 			)}

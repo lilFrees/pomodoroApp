@@ -1,12 +1,12 @@
-import { FaPlus } from "react-icons/fa";
-import style from "./TodoAdd.module.css";
+import { FaPlus } from 'react-icons/fa';
+import style from './TodoAdd.module.css';
 
-function TodoAdd() {
-  return (
-    <button className={style.add}>
-      <FaPlus />
-    </button>
-  );
+function TodoAdd(props) {
+	return (
+		<button className={style.add} onClick={props.onClick}>
+			<FaPlus />
+		</button>
+	);
 }
 
 export default TodoAdd;
