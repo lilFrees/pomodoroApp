@@ -1,23 +1,22 @@
-/* eslint-disable react/prop-types */
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const lightTheme = createTheme({
-  palette: {
-    type: "light",
-    background: {
-      default: "#F5F5F5",
-    },
-    primary: {
-      main: "#4267B2",
-    },
-    secondary: {
-      main: "#FF7F50",
-    },
-    text: {
-      primary: "#1F1F1F",
-    },
-    divider: "#919191",
-  },
+	palette: {
+		type: 'light',
+		background: {
+			default: '#F5F5F5',
+		},
+		primary: {
+			main: '#4267B2',
+		},
+		secondary: {
+			main: '#FF7F50',
+		},
+		text: {
+			primary: '#1F1F1F',
+		},
+		divider: '#919191',
+	},
 });
 
 // const darkTheme = createTheme({
@@ -40,7 +39,7 @@ const lightTheme = createTheme({
 // });
 
 function ThemesProvider({ children }) {
-  return <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>;
+	return <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>;
 }
 
 export default ThemesProvider;

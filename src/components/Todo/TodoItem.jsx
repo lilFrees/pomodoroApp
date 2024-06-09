@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import style from './TodoItem.module.css';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { RiEditFill } from 'react-icons/ri';

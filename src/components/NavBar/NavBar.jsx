@@ -100,7 +100,12 @@ function NavBar() {
 		return () => {
 			clearTimeout(timeOut);
 		};
-	}, [state.longBreakTime, state.shortBreakTime, state.studyTime]);
+	}, [
+		state.longBreakTime,
+		state.shortBreakTime,
+		state.studyTime,
+		customizeTimers,
+	]);
 
 	function goBack() {
 		dispatch({ type: 'GO_BACK' });

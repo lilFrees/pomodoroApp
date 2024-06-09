@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { createContext, useEffect, useCallback, useReducer } from 'react';
 
 import alarm from '../assets/alarm.mp3';
@@ -49,6 +48,15 @@ function reducer(state, action) {
 			return {
 				...state,
 				timers: action.payload,
+				currentTimer:
+					action.payload.find(
+						(timer) => timer.type === state.currentTimer.type
+					) || action.payload[0],
+				timeRemaining: (
+					action.payload.find(
+						(timer) => timer.type === state.currentTimer.type
+					) || action.payload[0]
+				).time,
 			};
 		case 'RESET_TO_DEFAULT':
 			return {
@@ -99,7 +107,6 @@ const TimerProvider = ({ children }) => {
 		}));
 
 		localStorage.setItem('timers', JSON.stringify(timersWithTime));
-		console.log(state.timers);
 	};
 
 	// Reset Timers to Default

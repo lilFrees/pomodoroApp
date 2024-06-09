@@ -1,22 +1,28 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 const TaskContext = createContext();
 
 function TaskProvider(props) {
-	const [tasks, setTasks] = useState([
+	const initialTasks = JSON.parse(localStorage.getItem('todo')) || [
 		{
 			id: 0,
-			task: 'Do the dishes',
+			task: 'Mathematics',
 		},
 		{
 			id: 1,
-			task: 'Study',
+			task: 'Physics',
 		},
 		{
 			id: 2,
-			task: 'Clean up your room',
+			task: 'Social Economics',
 		},
-	]);
+	];
+
+	const [tasks, setTasks] = useState(initialTasks);
+
+	useEffect(() => {
+		localStorage.setItem('todo', JSON.stringify(tasks));
+	}, [tasks]);
 
 	function addTask(taskDescription) {
 		const addedTask = {
