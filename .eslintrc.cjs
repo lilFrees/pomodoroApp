@@ -20,5 +20,6 @@ module.exports = {
 		'react/prop-types': 'off',
 		'no-inner-declarations': 'warn',
 		'no-unknown-propertyss': 'off',
+		'no-case-declarations': 'off',
 	},
 };

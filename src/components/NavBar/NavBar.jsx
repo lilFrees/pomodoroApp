@@ -95,7 +95,7 @@ function NavBar() {
 
 		const timeOut = setTimeout(() => {
 			customizeTimers(customTimers);
-		}, 1000);
+		}, 1500);
 
 		return () => {
 			clearTimeout(timeOut);

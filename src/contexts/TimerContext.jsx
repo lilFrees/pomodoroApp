@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { createContext, useEffect, useCallback, useReducer } from 'react';
 
 import alarm from '../assets/alarm.mp3';
@@ -45,18 +46,18 @@ function reducer(state, action) {
 				isActive: false,
 			};
 		case 'CUSTOMIZE':
+			const updatedTimers = action.payload;
+			const currentTimer = state.currentTimer.type
+				? updatedTimers.find(
+						(timer) => timer.type === state.currentTimer.type
+				  ) || updatedTimers[0]
+				: updatedTimers[0];
+
 			return {
 				...state,
-				timers: action.payload,
-				currentTimer:
-					action.payload.find(
-						(timer) => timer.type === state.currentTimer.type
-					) || action.payload[0],
-				timeRemaining: (
-					action.payload.find(
-						(timer) => timer.type === state.currentTimer.type
-					) || action.payload[0]
-				).time,
+				timers: updatedTimers,
+				currentTimer: currentTimer,
+				timeRemaining: currentTimer.time,
 			};
 		case 'RESET_TO_DEFAULT':
 			return {
@@ -139,6 +140,7 @@ const TimerProvider = ({ children }) => {
 		if (state.isActive && state.timeRemaining > 0) {
 			interval = setInterval(() => {
 				dispatch({ type: 'RUNNING' });
+				console.log('running');
 			}, 1000);
 		} else if (!state.isActive || state.timeRemaining === 0) {
 			clearInterval(interval);
