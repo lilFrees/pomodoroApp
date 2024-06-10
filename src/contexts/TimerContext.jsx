@@ -148,13 +148,12 @@ const TimerProvider = ({ children }) => {
 
 		if (state.timeRemaining === 0) {
 			let timersData = JSON.parse(localStorage.getItem('timers'));
+			console.log('stopped');
 			const currentIndex = timersData.findIndex(
 				(timer) => timer.type === state.currentTimer.type
 			);
 
 			timersData[currentIndex].count += 1;
-
-			console.log(timersData);
 
 			dispatch({
 				type: 'CUSTOMIZE',

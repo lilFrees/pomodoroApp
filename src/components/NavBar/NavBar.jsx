@@ -319,9 +319,9 @@ function NavBar() {
 
 							<Switch
 								className={style.navSlider}
-								value={autoRunning}
-								onChange={() => {
-									toggleAutoRun(!autoRunning);
+								checked={autoRunning}
+								onChange={(e) => {
+									toggleAutoRun(e.target.checked);
 								}}
 								style={{ color: 'lime' }}
 							/>
