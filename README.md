@@ -1,6 +1,6 @@
 # Focus Boost - Focus and Productivity App
 
-[Visit our website](http://your-website-link.com)
+[Visit our website](https://luxury-monstera-da713a.netlify.app/)
 
 ## Overview
 
@@ -37,7 +37,7 @@ Focus Boost is a simple and effective tool designed to help improve your focus a
 
 ## Feedback and Support
 
-We value your feedback! If you have any suggestions or issues, please reach out to us at [support@your-website-link.com](mailto:support@your-website-link.com).
+We value your feedback! If you have any suggestions or issues, please reach out to us at [support@your-website-link.com](mailto:freesberg001@gmail.com).
 
 ## License
 
