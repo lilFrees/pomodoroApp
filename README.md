@@ -1,6 +1,6 @@
 # Focus Boost - Focus and Productivity App
 
-[Visit our website](https://luxury-monstera-da713a.netlify.app/)
+[Visit our website](https://focusboost.netlify.app/)
 
 ## Overview
 
