@@ -100,12 +100,7 @@ function NavBar() {
 		return () => {
 			clearTimeout(timeOut);
 		};
-	}, [
-		state.longBreakTime,
-		state.shortBreakTime,
-		state.studyTime,
-		customizeTimers,
-	]);
+	}, [state.longBreakTime, state.shortBreakTime, state.studyTime]);
 
 	function goBack() {
 		dispatch({ type: 'GO_BACK' });
@@ -306,7 +301,6 @@ function NavBar() {
 								min={1}
 								step={1}
 								onChange={(e, newValue) => {
-									console.log(e.target.value);
 									!isActive &&
 										dispatch({
 											type: 'SET_LONG_BREAK_TIME',

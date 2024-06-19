@@ -140,7 +140,6 @@ const TimerProvider = ({ children }) => {
 		if (state.isActive && state.timeRemaining > 0) {
 			interval = setInterval(() => {
 				dispatch({ type: 'RUNNING' });
-				console.log('running');
 			}, 1000);
 		} else if (!state.isActive || state.timeRemaining === 0) {
 			clearInterval(interval);
